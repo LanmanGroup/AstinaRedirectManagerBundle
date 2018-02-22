@@ -1,6 +1,6 @@
 $(function() {
 
-    var $advancedFields = $('[data-advanced-field]').closest('.control-group');
+    var $advancedFields = $('[data-advanced-field]').closest('.control-group,.form-group');
     if ($advancedFields.length && $advancedFields.find(".form-errors").size() == 0) {
         $advancedFields.hide();
     }
