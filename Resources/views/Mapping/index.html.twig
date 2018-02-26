@@ -4,17 +4,17 @@
 {% block armb_content  %}
     {% if grouped_maps | length > 0 or search %}
         <div class="btn-group pull-right">
-            <a href="{{ path('armb_new_map') }}" class="btn btn-primary"><span class="icon-plus icon-white"></span> {{ 'list.new' | trans }}</a>
-            <a href="{{ path('armg_group_new') }}" class="btn"><span class="icon-plus"></span> {{ 'list.new_group' | trans }}</a>
+            <a href="{{ path('armb_new_map') }}" class="btn btn-primary"><span class="fa fa-plus"></span> {{ 'list.new' | trans }}</a>
+            <a href="{{ path('armg_group_new') }}" class="btn"><span class="fa fa-plus"></span> {{ 'list.new_group' | trans }}</a>
             <p>&nbsp;</p>
         </div>
 
         <form method="get" action="{{ path('armb_homepage') }}" class="form-inline">
             <div class="input-append">
                 <input type="text" name="search" value="{{ search }}">
-                <button type="submit" class="btn" name="action" value="search"><i class="icon-search"></i></button>
+                <button type="submit" class="btn" name="action" value="search"><i class="fa fa-search"></i></button>
                 {% if search %}
-                <button type="submit" class="btn" name="action" value="remove"><i class="icon-remove"></i></button>
+                <button type="submit" class="btn" name="action" value="remove"><i class="fa fa-remove"></i></button>
                 {% endif %}
             </div>
         </form>
@@ -37,7 +37,7 @@
                             <td colspan="6">
                                 <h3>
                                     <a href="{{ path('armb_homepage') }}?search={{ group_maps.group.name }}">{{ group_maps.group.name }}</a>
-                                    <a href="{{ path('armg_group_edit', {'id': group_maps.group.id}) }}" class="btn btn-link"><i class="icon-pencil"></i></a>
+                                    <a href="{{ path('armg_group_edit', {'id': group_maps.group.id}) }}" class="btn btn-link"><i class="fa fa-pencil"></i></a>
                                 </h3>
                             </td>
                         </tr>
@@ -76,8 +76,8 @@
                                 {% endif %}
                             </td>
                             <td>
-                                <a href="{{ path('armb_edit_map', {id:map.id}) }}" class="btn btn-info btn"><i class="icon-pencil"></i></a>
-                                <a href="#deleteRedirect" class="delete btn btn-danger btn" data-toggle="modal" data-deleteurl="{{ path('armb_delete_map', {id:map.id}) }}" data-target="#deleteRedirect"><i class="icon-trash icon-white"></i></a>
+                                <a href="{{ path('armb_edit_map', {id:map.id}) }}" class="btn btn-info btn"><i class="fa fa-pencil"></i></a>
+                                <a href="#deleteRedirect" class="delete btn btn-danger btn" data-toggle="modal" data-deleteurl="{{ path('armb_delete_map', {id:map.id}) }}" data-target="#deleteRedirect"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     {% endfor %}
