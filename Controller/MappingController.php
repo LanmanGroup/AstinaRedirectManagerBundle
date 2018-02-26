@@ -26,7 +26,7 @@ class MappingController extends Controller
 {
 
     /**
-     * @Template()
+     * @Template("AstinaRedirectManagerBundle:Mapping:index.html.twig")
      *
      * @param Request $request
      * @return array
