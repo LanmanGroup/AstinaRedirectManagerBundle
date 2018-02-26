@@ -57,7 +57,7 @@ class MappingController extends Controller
     /**
      * @param Request $request
      *
-     *  @Template()
+     * @Template("AstinaRedirectManagerBundle:Mapping:new.html.twig")
      *
      * @return array|RedirectResponse
      */
@@ -91,7 +91,7 @@ class MappingController extends Controller
     /**
      * @param Map $map
      *
-     * @Template()
+     * @Template("AstinaRedirectManagerBundle:Mapping:edit.html.twig")
      *
      * @return array
      */
