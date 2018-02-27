@@ -1,16 +1,19 @@
 {% extends "AstinaRedirectManagerBundle::content_layout.html.twig" %}
 {% trans_default_domain "AstinaRedirectManagerBundle" %}
 
-{% block armb_content  %}
+{% block armb_content %}
     {{ form_start(form, {'action': path('armb_new_map'), 'method': 'POST', 'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="box-header with-border">
+        <div class="box-tools pull-right">
+            <a href="#" data-action="toggle-advanced-fields" class="btn btn-box-tool"><i class="fa fa-cog"></i> {{ 'form.toggle_advanced_fields' | trans }}</a>
+        </div>
+    </div>
+    <div class="box-body">
         {{ form_widget(form) }}
-        <hr />
-        <div class="control-group">
-            <a href="#" data-action="toggle-advanced-fields">{{ 'form.toggle_advanced_fields' | trans }}</a>
-        </div>
-        <div class="form-actions">
-            <input class="btn btn-primary" type="submit" value= "{{ "form.submit" | trans }}" />
-            <a href="{{ path('armb_homepage') }}" class="btn">{{ 'form.abort' | trans }}</a>
-        </div>
+    </div>
+    <div class="box-footer">
+        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> {{ 'form.submit'|trans }}</button>
+        <a href="{{ path('armb_homepage') }}" class="btn btn-default"><i class="fa fa-list"></i> {{ 'form.back_list'|trans }}</a>
+    </div>
     {{ form_end(form) }}
 {% endblock %}
