@@ -99,19 +99,25 @@
         </p>
     {% endif %}
     <!-- Modal -->
-    <div id="deleteRedirect" class="modal fade" role="dialog" aria-labelledby="myModalLabel" >
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3>{{ 'modal.delete.title' | trans }}</h3>
-        </div>
-        <div class="modal-body">
-            <p>{{ 'modal.delete.message' | trans }}</p>
-        </div>
-        <div class="modal-footer">
-            <form action="" method="post">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">{{ 'modal.delete.close' | trans }}</button>
-                <input type="submit" class="btn btn-danger delete" value="{{ 'modal.delete.yes' | trans }}" />
-            </form>
+    <div class="modal fade" id="deleteRedirect" tabindex="-1" role="dialog" aria-labelledby="deleteRedirectLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="deleteRedirectLabel">{{ 'modal.delete.title' | trans }}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{ 'modal.delete.message' | trans }}</p>
+                </div>
+                <div class="modal-footer">
+                    <form action="" method="post">
+                        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{ 'modal.delete.close' | trans }}</button>
+                        <input type="submit" class="btn btn-danger delete" value="{{ 'modal.delete.yes' | trans }}" />
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
