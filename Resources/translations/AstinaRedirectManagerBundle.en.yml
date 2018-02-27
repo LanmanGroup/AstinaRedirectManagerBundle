@@ -43,6 +43,7 @@ form:
   name: "Name"
   priority: "Priority"
   toggle_advanced_fields: Toggle advanced settings
+  back_list: "Back to the list"
 
 list:
   new: "New Redirect"
