@@ -13,7 +13,8 @@
     <div class="box-footer">
         <button type="submit" class="btn btn-primary"><i
                     class="fa fa-save"></i> {{ (group.id? 'form.edit' : 'form.submit') | trans }}</button>
-        <a href="{{ path('armb_homepage') }}" class="btn btn-default"><i class="fa fa-list"></i> {{ 'form.back_list'|trans }}</a>
+        <a href="{{ path('armb_homepage') }}" class="btn btn-default"><i
+                    class="fa fa-list"></i> {{ 'form.back_list'|trans }}</a>
     </div>
     {{ form_end(form) }}
     {% if group.id %}
@@ -23,5 +24,4 @@
             </form>
         </div>
     {% endif %}
-
 {% endblock %}

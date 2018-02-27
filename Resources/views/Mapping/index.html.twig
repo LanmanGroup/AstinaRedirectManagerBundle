@@ -1,87 +1,97 @@
 {% extends "AstinaRedirectManagerBundle::content_layout.html.twig" %}
 {% trans_default_domain "AstinaRedirectManagerBundle" %}
 
-{% block armb_content  %}
+{% block armb_content %}
     {% if grouped_maps | length > 0 or search %}
         <div class="btn-group pull-right">
-            <a href="{{ path('armb_new_map') }}" class="btn btn-primary"><span class="fa fa-plus"></span> {{ 'list.new' | trans }}</a>
-            <a href="{{ path('armg_group_new') }}" class="btn"><span class="fa fa-plus"></span> {{ 'list.new_group' | trans }}</a>
+            <a href="{{ path('armb_new_map') }}" class="btn btn-primary"><span
+                        class="fa fa-plus"></span> {{ 'list.new' | trans }}</a>
+            <a href="{{ path('armg_group_new') }}" class="btn"><span
+                        class="fa fa-plus"></span> {{ 'list.new_group' | trans }}</a>
             <p>&nbsp;</p>
         </div>
 
         <form method="get" action="{{ path('armb_homepage') }}" class="form-inline">
             <div class="input-append">
                 <input type="text" name="search" value="{{ search }}">
-                <button type="submit" class="btn" name="action" value="search"><i class="fa fa-search"></i></button>
+                <button type="submit" class="btn" name="action" value="search"><i class="fa fa-search"></i>
+                </button>
                 {% if search %}
-                <button type="submit" class="btn" name="action" value="remove"><i class="fa fa-remove"></i></button>
+                    <button type="submit" class="btn" name="action" value="remove"><i class="fa fa-remove"></i>
+                    </button>
                 {% endif %}
             </div>
         </form>
 
         <table class="table table-condensed">
             <thead>
-                <tr>
-                    <th>{{ 'list.url.from' | trans }}</th>
-                    <th>{{ 'list.url.to' | trans }}</th>
-                    <th>{{ 'list.host' | trans }}</th>
-                    <th>{{ 'list.http_code' | trans }}</th>
-                    <th>{{ 'list.count' | trans }}</th>
-                    <th>&nbsp;</th>
-                </tr>
+            <tr>
+                <th>{{ 'list.url.from' | trans }}</th>
+                <th>{{ 'list.url.to' | trans }}</th>
+                <th>{{ 'list.host' | trans }}</th>
+                <th>{{ 'list.http_code' | trans }}</th>
+                <th>{{ 'list.count' | trans }}</th>
+                <th>&nbsp;</th>
+            </tr>
             </thead>
             <tbody>
-                {% for group_maps in grouped_maps %}
-                    {% if group_maps.group is defined and group_maps.maps|length>0 %}
-                        <tr>
-                            <td colspan="6">
-                                <h3>
-                                    <a href="{{ path('armb_homepage') }}?search={{ group_maps.group.name }}">{{ group_maps.group.name }}</a>
-                                    <a href="{{ path('armg_group_edit', {'id': group_maps.group.id}) }}" class="btn btn-link"><i class="fa fa-pencil"></i></a>
-                                </h3>
-                            </td>
-                        </tr>
-                    {% endif %}
-                    {% for map in group_maps.maps %}
-                        <tr>
-                            <td>
-                                {% if map.urlFromIsRegexPattern %}
-                                    {{ _self.truncateMiddle(map.urlFrom) }}
-                                {% else %}
-                                    <a target="_blank" href="{{ map.urlFrom }}">{{ _self.truncateMiddle(map.urlFrom) }}</a>
-                                {% endif %}
-                                {% if map.comment|trim %}
-                                    <p class="muted">{{ map.comment|nl2br|truncate(50) }}</p>
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if map.urlToContainsPlaceholders %}
-                                    {{ _self.truncateMiddle(map.urlTo) }}
-                                {% else %}
-                                    <a target="_blank" href="{{ map.urlTo }}">{{ _self.truncateMiddle(map.urlTo) }}</a>
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if map.hostRegexPatternNegate %}
-                                    <span class="muted">({{ 'list.host_regex_pattern_negate' | trans }})</span>
-                                {% endif %}
-                                {{ map.host }}
-                            </td>
-                            <td>{{ map.redirectHttpCode }}</td>
-                            <td>
-                                {% if map.countRedirects %}
-                                    {{ map.count }}
-                                {% else %}
-                                    <span class="muted">{{ 'list.no_data' | trans }}</span>
-                                {% endif %}
-                            </td>
-                            <td>
-                                <a href="{{ path('armb_edit_map', {id:map.id}) }}" class="btn btn-info btn"><i class="fa fa-pencil"></i></a>
-                                <a href="#deleteRedirect" class="delete btn btn-danger btn" data-toggle="modal" data-deleteurl="{{ path('armb_delete_map', {id:map.id}) }}" data-target="#deleteRedirect"><i class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
-                    {% endfor %}
+            {% for group_maps in grouped_maps %}
+                {% if group_maps.group is defined and group_maps.maps|length>0 %}
+                    <tr>
+                        <td colspan="6">
+                            <h3>
+                                <a href="{{ path('armb_homepage') }}?search={{ group_maps.group.name }}">{{ group_maps.group.name }}</a>
+                                <a href="{{ path('armg_group_edit', {'id': group_maps.group.id}) }}"
+                                   class="btn btn-link"><i class="fa fa-pencil"></i></a>
+                            </h3>
+                        </td>
+                    </tr>
+                {% endif %}
+                {% for map in group_maps.maps %}
+                    <tr>
+                        <td>
+                            {% if map.urlFromIsRegexPattern %}
+                                {{ _self.truncateMiddle(map.urlFrom) }}
+                            {% else %}
+                                <a target="_blank"
+                                   href="{{ map.urlFrom }}">{{ _self.truncateMiddle(map.urlFrom) }}</a>
+                            {% endif %}
+                            {% if map.comment|trim %}
+                                <p class="muted">{{ map.comment|nl2br|truncate(50) }}</p>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if map.urlToContainsPlaceholders %}
+                                {{ _self.truncateMiddle(map.urlTo) }}
+                            {% else %}
+                                <a target="_blank"
+                                   href="{{ map.urlTo }}">{{ _self.truncateMiddle(map.urlTo) }}</a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if map.hostRegexPatternNegate %}
+                                <span class="muted">({{ 'list.host_regex_pattern_negate' | trans }})</span>
+                            {% endif %}
+                            {{ map.host }}
+                        </td>
+                        <td>{{ map.redirectHttpCode }}</td>
+                        <td>
+                            {% if map.countRedirects %}
+                                {{ map.count }}
+                            {% else %}
+                                <span class="muted">{{ 'list.no_data' | trans }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ path('armb_edit_map', {id:map.id}) }}" class="btn btn-info btn"><i
+                                        class="fa fa-pencil"></i></a>
+                            <a href="#deleteRedirect" class="delete btn btn-danger btn" data-toggle="modal"
+                               data-deleteurl="{{ path('armb_delete_map', {id:map.id}) }}"
+                               data-target="#deleteRedirect"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
                 {% endfor %}
+            {% endfor %}
             </tbody>
         </table>
 
@@ -95,11 +105,13 @@
             {{ 'list.no_redirects.description' | trans }}
         </div>
         <p>
-            <a href="{{ path('armb_new_map') }}" class="btn btn-large btn-primary btn">{{ 'list.no_redirects.button' | trans }}</a>
+            <a href="{{ path('armb_new_map') }}"
+               class="btn btn-large btn-primary btn">{{ 'list.no_redirects.button' | trans }}</a>
         </p>
     {% endif %}
     <!-- Modal -->
-    <div class="modal fade" id="deleteRedirect" tabindex="-1" role="dialog" aria-labelledby="deleteRedirectLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteRedirect" tabindex="-1" role="dialog"
+         aria-labelledby="deleteRedirectLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -113,8 +125,10 @@
                 </div>
                 <div class="modal-footer">
                     <form action="" method="post">
-                        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{ 'modal.delete.close' | trans }}</button>
-                        <input type="submit" class="btn btn-danger delete" value="{{ 'modal.delete.yes' | trans }}" />
+                        <button class="btn btn-default" data-dismiss="modal"
+                                aria-hidden="true">{{ 'modal.delete.close' | trans }}</button>
+                        <input type="submit" class="btn btn-danger delete"
+                               value="{{ 'modal.delete.yes' | trans }}"/>
                     </form>
                 </div>
             </div>
@@ -123,10 +137,10 @@
 {% endblock %}
 
 {% macro truncateMiddle(string, minLength = 25) %}
-{% spaceless %}
-    {% if string|length  > (minLength + 10) %}
-        {% set string =  string|truncate(minLength)  ~ string|slice(string|length - 10) %}
-    {% endif %}
-    {{ string }}
-{% endspaceless %}
+    {% spaceless %}
+        {% if string|length  > (minLength + 10) %}
+            {% set string =  string|truncate(minLength)  ~ string|slice(string|length - 10) %}
+        {% endif %}
+        {{ string }}
+    {% endspaceless %}
 {% endmacro %}

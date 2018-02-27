@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Astina redirect Manager</title>
     {% block javascripts %}{% endblock %}
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="page-header">
-                <h1>{{ 'redirects' | trans }}</h1>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="page-header">
+            <h1>{{ 'redirects' | trans }}</h1>
+        </div>
+        <div class="box box-solid">
+            <div class="box-body">
+                {% block armb_content %}{% endblock %}
             </div>
-            {% block armb_content %}{% endblock %}
         </div>
     </div>
+</div>
 </body>
 </html>
