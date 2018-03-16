@@ -38,12 +38,14 @@
             {% for group_maps in grouped_maps %}
                 {% if group_maps.group is defined and group_maps.maps|length>0 %}
                     <tr>
-                        <td colspan="6">
-                            <h3>
+                        <td colspan="5">
+                            <h3 class="no-margin">
                                 <a href="{{ path('armb_homepage') }}?search={{ group_maps.group.name }}">{{ group_maps.group.name }}</a>
-                                <a href="{{ path('armg_group_edit', {'id': group_maps.group.id}) }}"
-                                   class="btn btn-link"><i class="fa fa-pencil"></i></a>
                             </h3>
+                        </td>
+                        <td>
+                            <a href="{{ path('armg_group_edit', {'id': group_maps.group.id}) }}"
+                               class="btn btn-default"><i class="fa fa-edit"></i></a>
                         </td>
                     </tr>
                 {% endif %}
@@ -83,11 +85,13 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a href="{{ path('armb_edit_map', {id:map.id}) }}" class="btn btn-info btn"><i
-                                        class="fa fa-pencil"></i></a>
-                            <a href="#deleteRedirect" class="delete btn btn-danger btn" data-toggle="modal"
-                               data-deleteurl="{{ path('armb_delete_map', {id:map.id}) }}"
-                               data-target="#deleteRedirect"><i class="fa fa-trash"></i></a>
+                            <div class="btn-group">
+                                <a href="{{ path('armb_edit_map', {id:map.id}) }}" class="btn btn-default"><i
+                                            class="fa fa-edit"></i></a>
+                                <a href="#deleteRedirect" class="delete btn btn-danger" data-toggle="modal"
+                                   data-deleteurl="{{ path('armb_delete_map', {id:map.id}) }}"
+                                   data-target="#deleteRedirect"><i class="fa fa-trash"></i></a>
+                            </div>
                         </td>
                     </tr>
                 {% endfor %}
@@ -106,7 +110,7 @@
         </div>
         <p>
             <a href="{{ path('armb_new_map') }}"
-               class="btn btn-large btn-primary btn">{{ 'list.no_redirects.button' | trans }}</a>
+               class="btn btn-large btn-primary">{{ 'list.no_redirects.button' | trans }}</a>
         </p>
     {% endif %}
     <!-- Modal -->
